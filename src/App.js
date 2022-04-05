@@ -21,13 +21,15 @@ function App() {
   const [wordOfTheDay, setWordOfTheDay] = useState([])
 
   useEffect(() => {
-    generateWordSet().then((words) => {
-      setGuessSet(words["wordSet"])
-    })
-    todaysWord().then((word) => {
-      // console.log(word)
-      setWordOfTheDay(word.word.split(""))
-    })
+    // generateWordSet().then((words) => {
+    //   setGuessSet(words["wordSet"])
+    // })
+    setGuessSet(generateWordSet()["wordSet"])
+    // todaysWord().then((word) => {
+    //   // console.log(word)
+    //   setWordOfTheDay(word.word.split(""))
+    // })
+    setWordOfTheDay(todaysWord().word.split(""))
   }, []);
   
   // console.log("guessSet:", guessSet)
