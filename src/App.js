@@ -74,6 +74,56 @@ function App() {
 		setCurrAttempt({ attempt: currAttempt.attempt, position: currAttempt.position - 1})
 	}
 
+  function onShare() {
+    const letterStates = () => {
+      let states = ""
+      for (let j = 0; j < board.length; j++) {
+        let row = board[j]
+        for (let i = 0; i < row.length; i++) {
+          const letter = row[i]
+          const correct = wordOfTheDay[i] === letter
+          const almost = !correct && letter !== "" && wordOfTheDay.includes(letter)
+          // let extra = wordOfTheDay.filter(x => x === letter).length < board[attemptVal].filter(x => x === letter).length
+          let not_extra = row.filter(x => x === letter).length - wordOfTheDay.filter(x => x === letter).length
+          if (not_extra > 0) {
+            not_extra = row.slice(0, i).filter(x => x === letter).length < wordOfTheDay.filter(x => x === letter).length
+          } else {
+            not_extra = true
+          }
+          /*
+          ⬛🟩🟨
+          */
+         const letterState = (correct ? "🟩" : (almost && not_extra)? "🟨" : "⬛" );
+         states += letterState
+        }
+        states += '\n'
+      }
+      return states
+    }
+    const finalAttempt = gameOver.win ? currAttempt.attempt : 'X'
+    const toBeShared = {
+      title: "Namedle",
+      text: `Namedle ${finalAttempt}/6\n\n${letterStates()}`,
+      url: "https://namedle.johnwack.com"
+    }
+    console.log(toBeShared)
+    console.log(Boolean(navigator.share))
+    if (navigator.share){
+    navigator
+      .share(toBeShared)
+      .then(() => console.log("Share was successful."))
+      .catch((error: DOMException) =>
+        alert(
+          `Sharing failed! Code: ${error.code} | Name: ${
+            error.message
+          } | Message: ${error.message}`
+        )
+      );
+    } else {
+      alert("Your browser doesn't support the Share Intent");
+    }
+  }
+
   return (
     <div className="App">
       <nav>
@@ -95,7 +145,7 @@ function App() {
       }}>
         <div className='game'>
           <Board r={6} l={wordOfTheDay.length}/>
-          {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+          {gameOver.gameOver ? <GameOver onShare={onShare}/> : <Keyboard />}
         </div>
       </AppContext.Provider>
     </div>
