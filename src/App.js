@@ -77,7 +77,7 @@ function App() {
   function onShare() {
     const letterStates = () => {
       let states = ""
-      for (let j = 0; j < board.length; j++) {
+      for (let j = 0; j < currAttempt.attempt; j++) {
         let row = board[j]
         for (let i = 0; i < row.length; i++) {
           const letter = row[i]
