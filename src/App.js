@@ -46,7 +46,7 @@ function App() {
 	function onEnter() {
     const guess = board[currAttempt.attempt].join("")
     const wod = wordOfTheDay.join("")
-		if (currAttempt.position != wod.length) {
+		if (currAttempt.position !== wod.length) {
 			return 
 		}
     if (guessSet.has(guess.toLowerCase())) {
@@ -59,13 +59,13 @@ function App() {
     // console.log("currAttempt: ", currAttempt.attempt)
     if (guess === wod) {
       setGameOver({gameOver: true, win: true})
-    } else if (currAttempt.attempt == 5) {
+    } else if (currAttempt.attempt === 5) {
       setGameOver({gameOver: true, win: false})
     }
 	}
 
 	function onDelete() {
-		if (currAttempt.position == 0) {
+		if (currAttempt.position === 0) {
 			return 
 		}
 		const newBoard = [...board]

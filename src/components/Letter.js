@@ -9,7 +9,12 @@ function Letter({letterPos, attemptVal }) {
 	const correct = wordOfTheDay[letterPos] === letter
 	const almost = !correct && letter !== "" && wordOfTheDay.includes(letter)
 	// let extra = wordOfTheDay.filter(x => x === letter).length < board[attemptVal].filter(x => x === letter).length
-	const not_extra = (board[attemptVal].slice(0, letterPos).filter(x => x === letter).length < wordOfTheDay.filter(x => x === letter).length)
+	let not_extra = board[attemptVal].filter(x => x === letter).length - wordOfTheDay.filter(x => x === letter).length
+	if (not_extra > 0) {
+		not_extra = board[attemptVal].slice(0, letterPos).filter(x => x === letter).length < wordOfTheDay.filter(x => x === letter).length
+	} else {
+		not_extra = true
+	}
 	let c = 'letter '
 	const letterState = 
 		currAttempt.attempt > attemptVal &&

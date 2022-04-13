@@ -13,6 +13,8 @@ export const boardDefault = [
 
 export function generateWordSet() {
 	const wordSet = new Set(guessBank)
+	// const debugGuesses = ["DDDAADDD", "GGGGGDDD"]
+	// debugGuesses.forEach(e => wordSet.add(e.toLowerCase()))
 	return { wordSet }
 }
 
@@ -34,6 +36,8 @@ export function todaysWord() {
 	const startDate = new Date(2022, 1, 17);
 	const index = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 3600 * 24))
 	const word = nameBank[index].toUpperCase()
+	// const word = "ABCDDEFG"
+	// console.log(word)
 	return { word }
 }
 
