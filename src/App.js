@@ -103,8 +103,7 @@ function App() {
     const finalAttempt = gameOver.win ? currAttempt.attempt : 'X'
     const toBeShared = {
       title: "Namedle",
-      text: `Namedle ${finalAttempt}/6\n\n${letterStates()}`,
-      url: "https://namedle.johnwack.com"
+      text: `Namedle ${finalAttempt}/6\n\n${letterStates()}`
     }
     console.log(toBeShared)
     console.log(Boolean(navigator.share))
