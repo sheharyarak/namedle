@@ -38,7 +38,7 @@ export function todaysWord() {
 	const word = nameBank[index].toUpperCase()
 	// const word = "ABCDDEFG"
 	// console.log(word)
-	return { word }
+	return { word, index }
 }
 
 // export async function todaysWord() {

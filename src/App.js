@@ -17,7 +17,7 @@ function App() {
   const [guessSet, setGuessSet] = useState(new Set())
   const [disabledLetters, setDisabledLetters] = useState([])
   const [gameOver, setGameOver] = useState({ gameOver: false, win: false})
-
+  const [todaysIndex, setTodaysIndex] = useState(0)
   const [wordOfTheDay, setWordOfTheDay] = useState([])
 
   useEffect(() => {
@@ -29,7 +29,9 @@ function App() {
     //   // console.log(word)
     //   setWordOfTheDay(word.word.split(""))
     // })
-    setWordOfTheDay(todaysWord().word.split(""))
+    const tw = todaysWord()
+    setWordOfTheDay(tw.word.split(""))
+    setTodaysIndex(tw.index)
   }, []);
   
   // console.log("guessSet:", guessSet)
@@ -103,7 +105,7 @@ function App() {
     const finalAttempt = gameOver.win ? currAttempt.attempt : 'X'
     const toBeShared = {
       title: "Namedle",
-      text: `Namedle ${finalAttempt}/6\n\n${letterStates()}`
+      text: `Namedle ${todaysIndex + 1} ${finalAttempt}/6\n\n${letterStates()}`
     }
     console.log(toBeShared)
     console.log(Boolean(navigator.share))
