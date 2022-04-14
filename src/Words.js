@@ -32,9 +32,13 @@ export function generateWordSet() {
 // 	return { wordSet };
 // }
 
-export function todaysWord() {
-	const startDate = new Date(2022, 1, 17);
-	const index = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 3600 * 24))
+export function todaysWord(todaysDate) {
+	// todaysDate = new Date(todaysDate.valueOf() + 2 * 86400000)
+	// console.log(todaysDate)
+	const startDate = new Date(2022, 0, 17);
+	// console.log(startDate)
+	const index = Math.floor((todaysDate.valueOf() - startDate.valueOf()) / 86400000)
+	// console.log(index)
 	const word = nameBank[index].toUpperCase()
 	// const word = "ABCDDEFG"
 	// console.log(word)

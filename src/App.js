@@ -29,7 +29,7 @@ function App() {
     //   // console.log(word)
     //   setWordOfTheDay(word.word.split(""))
     // })
-    const tw = todaysWord()
+    const tw = todaysWord(new Date())
     setWordOfTheDay(tw.word.split(""))
     setTodaysIndex(tw.index)
   }, []);
