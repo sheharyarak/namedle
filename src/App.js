@@ -103,9 +103,10 @@ function App() {
       return states
     }
     const finalAttempt = gameOver.win ? currAttempt.attempt : 'X'
+    const text = `Namedle ${todaysIndex + 1} ${finalAttempt}/6\n\n${letterStates()}`
     const toBeShared = {
       title: "Namedle",
-      text: `Namedle ${todaysIndex + 1} ${finalAttempt}/6\n\n${letterStates()}`
+      text: text
     }
     console.log(toBeShared)
     console.log(Boolean(navigator.share))
@@ -121,7 +122,32 @@ function App() {
         )
       );
     } else {
-      alert("Your browser doesn't support the Share Intent");
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        alert("Result has been copied to clipboard");
+      } else {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+          alert('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+          alert('Fallback: Oops, unable to copy');
+        }
+
+        document.body.removeChild(textArea);
+      }
     }
   }
 
