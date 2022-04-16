@@ -81,7 +81,7 @@ function App() {
       let states = ""
       for (let j = 0; j < currAttempt.attempt; j++) {
         let row = board[j]
-        for (let i = 0; i < row.length; i++) {
+        for (let i = 0; i < wordOfTheDay.length; i++) {
           const letter = row[i]
           const correct = wordOfTheDay[i] === letter
           const almost = !correct && letter !== "" && wordOfTheDay.includes(letter)

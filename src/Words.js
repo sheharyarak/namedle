@@ -35,8 +35,8 @@ export function generateWordSet() {
 export function todaysWord(todaysDate) {
 	// todaysDate = new Date(todaysDate.valueOf() + 2 * 86400000)
 	// console.log(todaysDate)
-	const startDate = new Date(2022, 0, 17);
-	// console.log(startDate)
+	const startDate = new Date("2022-01-17T00:00:00.000-08:00");
+	console.log(startDate)
 	const index = Math.floor((todaysDate.valueOf() - startDate.valueOf()) / 86400000)
 	// console.log(index)
 	const word = nameBank[index].toUpperCase()
